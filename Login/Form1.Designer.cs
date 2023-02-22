@@ -31,7 +31,8 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -68,7 +69,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel2.Controls.Add(this.listBox1);
+            this.panel2.Controls.Add(this.checkedListBox1);
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
@@ -83,21 +85,31 @@
             this.panel2.Size = new System.Drawing.Size(488, 546);
             this.panel2.TabIndex = 1;
             // 
-            // listBox1
+            // checkedListBox1
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(145, 215);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(150, 44);
-            this.listBox1.TabIndex = 9;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(145, 219);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(150, 70);
+            this.checkedListBox1.TabIndex = 11;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(145, 411);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(199, 64);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Cadastrar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Location = new System.Drawing.Point(3, 339);
+            this.label6.Location = new System.Drawing.Point(3, 366);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(138, 25);
             this.label6.TabIndex = 8;
@@ -108,7 +120,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(70, 276);
+            this.label5.Location = new System.Drawing.Point(70, 303);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 28);
             this.label5.TabIndex = 7;
@@ -138,14 +150,14 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(145, 339);
+            this.textBox4.Location = new System.Drawing.Point(145, 366);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(320, 27);
             this.textBox4.TabIndex = 4;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(145, 280);
+            this.textBox3.Location = new System.Drawing.Point(145, 307);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(320, 27);
             this.textBox3.TabIndex = 3;
@@ -198,7 +210,6 @@
         private Panel panel1;
         private Label label2;
         private Panel panel2;
-        private ListBox listBox1;
         private Label label6;
         private Label label5;
         private Label label4;
@@ -208,5 +219,7 @@
         private TextBox textBox2;
         private TextBox textBox1;
         private Label label1;
+        private Button button1;
+        private CheckedListBox checkedListBox1;
     }
 }
