@@ -1,11 +1,12 @@
-Login/DbData.cs
 
 ### DotnetCore ###
 # .NET Core build folders
 bin/
 obj/
 
-# Common node modules locations
+Login/DbData.cs
+
+# Common node modules locati ons
 /node_modules
 /wwwroot/node_modules
 
