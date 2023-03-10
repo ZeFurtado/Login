@@ -4,7 +4,7 @@
 bin/
 obj/
 
-Login/DbData.cs
+Login/*DbData.cs
 
 # Common node modules locati ons
 /node_modules
