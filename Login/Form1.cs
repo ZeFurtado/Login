@@ -35,7 +35,7 @@ namespace Login
             else if (string.IsNullOrEmpty(txtRepSenha.Text))
             {
                 MessageBox.Show("Você precisa digitar a senha novamente");
-            } else if (SenhaValida(txtSenha.Text, txtRepSenha.Text))
+            } else if (SenhaValida(txtSenha.Text, txtRepSenha.Text) && NomeValido(txtNome.Text, txtSobrenome.Text))
             {
                 string nome_usuario = CriaNomeUsuario(txtNome.Text, txtSobrenome.Text);
                 string senha = txtSenha.Text;
@@ -56,16 +56,8 @@ namespace Login
             txtNome.Clear();
             txtSobrenome.Clear();
             txtSenha.Clear();
-        }
+            txtRepSenha.Clear();
 
-        bool ValidaNome(string nome) 
-        {
-            if (string.IsNullOrEmpty(nome)) 
-            {
-                MessageBox.Show("Digita o nome certo");
-                return false;
-            }
-            return true;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -78,9 +70,38 @@ namespace Login
         {
             string nome_usuario;
 
-            nome_usuario = nome.ToLower() +"."+sobrenome.ToLower();
+            nome_usuario = nome.ToLower()+"."+sobrenome.ToLower();
             return nome_usuario;
         }
+
+
+
+        private bool NomeValido(string nome, string sobrenome) 
+        {
+
+            foreach (char a in nome) 
+            {
+                if (char.IsDigit(a)) 
+                {
+                    MessageBox.Show("O nome é inválido!!!");
+                    return false;
+                    break;
+                }
+            }
+
+            foreach (char a in sobrenome) 
+            {
+                if (char.IsDigit(a)) 
+                {
+                    MessageBox.Show("O sobrenome é inválido!!!");
+                    return false;
+                    break;
+                }
+            }
+
+            return true;
+        }
+
 
         private bool SenhaValida(string senha, string repSenha) 
         {
