@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -49,6 +50,7 @@
             this.txtSobrenome = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -127,6 +129,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel2.Controls.Add(this.button2);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.cmboxSexo);
             this.panel2.Controls.Add(this.lblDbConnectionStatus);
@@ -231,14 +234,14 @@
             // 
             this.txtRepSenha.Location = new System.Drawing.Point(145, 318);
             this.txtRepSenha.Name = "txtRepSenha";
-            this.txtRepSenha.Size = new System.Drawing.Size(320, 27);
+            this.txtRepSenha.Size = new System.Drawing.Size(235, 27);
             this.txtRepSenha.TabIndex = 4;
             // 
             // txtSenha
             // 
             this.txtSenha.Location = new System.Drawing.Point(145, 275);
             this.txtSenha.Name = "txtSenha";
-            this.txtSenha.Size = new System.Drawing.Size(320, 27);
+            this.txtSenha.Size = new System.Drawing.Size(235, 27);
             this.txtSenha.TabIndex = 3;
             // 
             // txtSobrenome
@@ -265,6 +268,16 @@
             this.label1.Size = new System.Drawing.Size(179, 41);
             this.label1.TabIndex = 0;
             this.label1.Text = "CADASTRO";
+            // 
+            // button2
+            // 
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(386, 275);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(79, 29);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -307,5 +320,6 @@
         private TextBox txtUsuario;
         private TextBox txtSenhaLogin;
         private Label label8;
+        private Button button2;
     }
 }

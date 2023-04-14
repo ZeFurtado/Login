@@ -20,28 +20,29 @@ namespace Login
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            mySqlOperations.Insert("user_data", txtNome.Text, txtSobrenome.Text, cmboxSexo.Text, txtSenha.Text);
-
-            string textoDeAviso;
-
             if (string.IsNullOrEmpty(txtNome.Text))
             {
                 MessageBox.Show("O campo 'Nome' está vazio");
-            } else if (string.IsNullOrEmpty(txtSobrenome.Text))
+            }
+            else if (string.IsNullOrEmpty(txtSobrenome.Text))
             {
                 MessageBox.Show("O campo 'Sobrenome' está vazio");
-            } else if (string.IsNullOrEmpty(txtSenha.Text))
+            }
+            else if (string.IsNullOrEmpty(txtSenha.Text))
             {
                 MessageBox.Show("O campo 'Senha' está vazio");
-            } else if (string.IsNullOrEmpty(txtRepSenha.Text)) 
+            }
+            else if (string.IsNullOrEmpty(txtRepSenha.Text))
             {
                 MessageBox.Show("Você precisa digitar a senha novamente");
+            } else if (SenhaValida(txtSenha.Text, txtRepSenha.Text))
+            {
+                string nome_usuario = CriaNomeUsuario(txtNome.Text, txtSobrenome.Text);
+                string senha = txtSenha.Text;
+
+                mySqlOperations.Insert("user_data", txtNome.Text, txtSobrenome.Text, nome_usuario, cmboxSexo.Text, senha);
+                LimpaCampos();
             }
-
-
-
-            LimpaCampos();
 
         }
 
@@ -71,5 +72,28 @@ namespace Login
         {
             mySqlOperations.Select(txtSenhaLogin.Text, "test");
         }
+
+
+        private string CriaNomeUsuario(string nome, string sobrenome)
+        {
+            string nome_usuario;
+
+            nome_usuario = nome.ToLower() +"."+sobrenome.ToLower();
+            return nome_usuario;
+        }
+
+        private bool SenhaValida(string senha, string repSenha) 
+        {
+            if (senha == repSenha)
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            }
+        }
+
+        
     }
 }

@@ -28,6 +28,7 @@ namespace Login
             try
             {
                 conexao.Open();
+                //Escrever uma mensagem na label 7 aqui
                 conexao.Close();
             }
             catch (Exception ex) 
@@ -64,14 +65,12 @@ namespace Login
             conexao.Close();
         }
 
-        public void Insert(string tabela, string nome, string sobrenome, string sexo, string senha) 
+        public void Insert(string tabela, string nome, string sobrenome, string nome_usuario,string sexo, string senha) 
         {
             using var conexao = new MySqlConnection(DadosDeConexao());
             try
             {
                 conexao.Open();
-
-                string nome_usuario = nome + "." + sobrenome;
 
                 MySqlCommand comandoMySql = conexao.CreateCommand();
                 comandoMySql.CommandText = $"INSERT INTO {tabela} (nome, sobrenome, nome_usuario, sexo, senha) VALUES ('{nome}', '{sobrenome}','{nome_usuario}','{sexo}', '{senha}')";
