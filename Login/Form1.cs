@@ -15,8 +15,6 @@ namespace Login
             txtSenha.PasswordChar = '*';
             txtRepSenha.PasswordChar = '*';
 
-
-            
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -38,6 +36,7 @@ namespace Login
             } else if (SenhaValida(txtSenha.Text, txtRepSenha.Text) && NomeValido(txtNome.Text, txtSobrenome.Text))
             {
                 string nome_usuario = CriaNomeUsuario(txtNome.Text, txtSobrenome.Text);
+
                 string senha = txtSenha.Text;
 
                 mySqlOperations.Insert("user_data", txtNome.Text, txtSobrenome.Text, nome_usuario, cmboxSexo.Text, senha);
@@ -56,8 +55,7 @@ namespace Login
             txtNome.Clear();
             txtSobrenome.Clear();
             txtSenha.Clear();
-            txtRepSenha.Clear();
-
+            txtRepSenha.Clear(); 
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -68,9 +66,24 @@ namespace Login
 
         private string CriaNomeUsuario(string nome, string sobrenome)
         {
-            string nome_usuario;
+            string nome_usuario = nome.ToLower() + "." + sobrenome.ToLower();
+            bool usuarioExiste = true;
+            do
+            {
+                if (mySqlOperations.UserExists(nome_usuario))
+                {
+                    usuarioExiste = true;
+                    string novoNome = nome.Remove(1, nome.Length - 1);
+                    nome_usuario = novoNome.ToLower() + "." + sobrenome.ToLower();
+                    MessageBox.Show(nome_usuario);
+                }
+                else 
+                {
+                    usuarioExiste = false;
+                }
 
-            nome_usuario = nome.ToLower()+"."+sobrenome.ToLower();
+            } while (usuarioExiste);
+
             return nome_usuario;
         }
 
@@ -100,6 +113,8 @@ namespace Login
             }
 
             return true;
+
+
         }
 
 

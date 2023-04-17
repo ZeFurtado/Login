@@ -39,32 +39,6 @@ namespace Login
             
         }
 
-        public void SelectTables(string table) 
-        {
-
-            using var conexao = new MySqlConnection(DadosDeConexao());
-                
-            try
-            {
-                conexao.Open();
-                
-                using var comandoSql = new MySqlCommand($"SELECT * FROM {table}", conexao);
-                MySqlDataReader leitor = comandoSql.ExecuteReader();
-
-                while (leitor.Read()) 
-                {
-                    MessageBox.Show(leitor[0] + "---" + leitor[1]);
-                }
-                leitor.Close();
-            }
-            catch (Exception ex) 
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            conexao.Close();
-        }
-
         public void Insert(string tabela, string nome, string sobrenome, string nome_usuario,string sexo, string senha) 
         {
             using var conexao = new MySqlConnection(DadosDeConexao());
@@ -87,14 +61,14 @@ namespace Login
             conexao.Close();
         }
 
-        public void Select(string senha, string user) 
+        public void Select(string senha, string user) // Usar para validar o login
         {
             using var conexao = new MySqlConnection(DadosDeConexao());
             try
             {
                 conexao.Open();
                 
-                using var comandoMySql = new MySqlCommand($"SELECT nome_usuario FROM user_data WHERE senha = '{senha}'");
+                using var comandoMySql = new MySqlCommand($"SELECT nome_usuario FROM user_data WHERE senha = '{senha}'", conexao);
                 MySqlDataReader leitor = comandoMySql.ExecuteReader();
 
                 while (leitor.Read())  
@@ -107,9 +81,43 @@ namespace Login
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                conexao.Close();
             }
 
-            
+        }
+
+        public bool UserExists(string user) 
+        {
+            using var conexao = new MySqlConnection(DadosDeConexao());
+
+            try
+            {
+                conexao.Open();
+                using var comandoMySql = new MySqlCommand($"SELECT * FROM user_data WHERE nome_usuario = '{user}'", conexao);
+                MySqlDataReader leitor = comandoMySql.ExecuteReader();
+
+
+                if (leitor.Read())
+                {
+                    conexao.Close();
+                    return true;
+                }
+                else
+                {
+                    conexao.Close();
+                    return false;
+                }
+
+                
+            }
+            catch (Exception ex) 
+            {
+ 
+                conexao.Close();
+                MessageBox.Show(ex.Message);
+                return true;
+                
+            }
         }
 
     }
